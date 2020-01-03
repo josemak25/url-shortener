@@ -1,26 +1,8 @@
-class Queries {
-  constructor(Model) {
-    this.Model = Model;
-  }
-  create(payload) {
-    return this.Model.create(payload);
-  }
+const Query = require("./queries");
+const URL = require("../model/url");
 
-  findOne(payload) {
-    return this.Model.findOne(payload).exec();
-  }
+// sync all models to general query methods
+const UrlQuery = Query(URL);
 
-  findAll(payload) {
-    return this.Model.find(payload);
-  }
-
-  update({ payload, where }) {
-    return this.Model.findOneAndUpdate(where, payload, { new: true }).exec();
-  }
-
-  delete(payload) {
-    return this.Model.findOneAndDelete(payload).exec();
-  }
-}
-
-module.exports = Queries;
+// export synched model for use on controller
+module.exports = { UrlQuery };
