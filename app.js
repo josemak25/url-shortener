@@ -21,6 +21,9 @@ const error = require("./config/error");
 const app = express();
 const server = http.Server(app);
 
+// start db
+require("./config/database");
+
 // secure apps by setting various HTTP headers
 app.use(
   helmet({
@@ -33,7 +36,6 @@ app.use(
 // allow cross origin requests
 // configure to only allow requests from certain origins
 app.use(cors({ credentials: true, origin: true }));
-app.use(cookieParser());
 
 // parsing the request body
 app.use(bodyParser.json());
