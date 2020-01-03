@@ -3,13 +3,21 @@ const { celebrate: validate } = require("celebrate");
 
 const urlCtrl = require("../controller/urlController");
 const paramValidation = require("../validations/urlValidation");
+const validateUri = require("../middleware/validateUri");
 
 const router = Router();
 
 router
-  .route("/:code")
-  .get(validate(paramValidation.verify, { abortEarly: false }), urlCtrl.verify)
+  .route("/")
   //Add body validation
-  .put(validate(paramValidation.create, { abortEarly: false }), urlCtrl.create);
+  .post(
+    [validate(paramValidation.create, { abortEarly: false }), validateUri],
+    urlCtrl.create
+  );
+
+router
+  .route("/:code")
+  //Add body validation
+  .get(validate(paramValidation.verify, { abortEarly: false }), urlCtrl.verify);
 
 module.exports = router;
