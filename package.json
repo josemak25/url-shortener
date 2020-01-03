@@ -4,15 +4,34 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
+    "test": "cross-env NODE_ENV=test && jest --runInBand --verbose --detectOpenHandles --forceExit",
+    "test:watch": "yarn test -- --watch",
+    "test:coverage": "yarn test --coverage",
+    "report-coverage": "coveralls < ./coverage/lcov.info"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josemak25/url-shortener.git"
+  },
+  "keywords": [
+    "url",
+    "shortener"
+  ],
+  "bugs": {
+    "url": "https://github.com/josemak25/url-shortener/issues"
+  },
+  "homepage": "https://github.com/josemak25/url-shortener#readme",
+  "author": "Amakiri Joseph Lucky",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
+    "jest": "^24.9.0",
     "mongoose": "^5.8.4",
     "morgan": "^1.9.1",
     "nodemon": "^2.0.2",
