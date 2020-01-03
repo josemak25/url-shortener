@@ -20,7 +20,8 @@ mongoose.connect(mongoUri, {
   keepAlive: 1,
   useNewUrlParser: true,
   useCreateIndex: true,
-  useFindAndModify: false
+  useFindAndModify: false,
+  useUnifiedTopology: true
 });
 
 mongoose.connection.on("error", () => {
@@ -33,5 +34,3 @@ if (config.mongooseDebug) {
     debug(`${collectionName}.${method}`, util.inspect(query, false, 20), doc);
   });
 }
-
-module.exports = database;
