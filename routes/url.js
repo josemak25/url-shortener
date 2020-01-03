@@ -1,12 +1,15 @@
 const { Router } = require("express");
+const { celebrate: validate } = require("celebrate");
 
 const urlCtrl = require("../controller/urlController");
+const paramValidation = require("../validations/urlValidation");
 
 const router = Router();
 
-const validUrl = require("valid-url");
-const URL = require("../model/url");
-const shortCode = require("../helpers/uniqueUriGenerator");
+router
+  .route("/:code")
+  .get(validate(paramValidation.verify, { abortEarly: false }), urlCtrl.verify)
+  //Add body validation
+  .put(validate(paramValidation.create, { abortEarly: false }), urlCtrl.create);
 
-
-module.exports = router
+module.exports = router;
