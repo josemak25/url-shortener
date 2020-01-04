@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const URL = new Schema(
+const schema = new Schema(
   {
     originalUrl: {
       type: String,
@@ -18,4 +18,13 @@ const URL = new Schema(
   { timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" } }
 );
 
-module.exports = model("url", URL);
+schema.methods.toJSON = function() {
+  const shortenedUrl = this.toObject();
+  const { _id } = shortenedUrl;
+  shortenedUrl.id = _id;
+  delete shortenedUrl._id;
+  delete shortenedUrl.__v;
+  return shortenedUrl;
+};
+
+module.exports = model("url", schema);
