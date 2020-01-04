@@ -24,6 +24,9 @@ const server = http.Server(app);
 // start db
 require("./config/database");
 
+// start db caches
+require("./services/cache.service");
+
 // secure apps by setting various HTTP headers
 app.use(
   helmet({
