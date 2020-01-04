@@ -1,5 +1,4 @@
 const httpStatus = require("http-status");
-const validUrl = require("valid-url");
 
 const { UrlQuery } = require("../queries");
 const shortCode = require("../helpers/uniqueUriGenerator");
