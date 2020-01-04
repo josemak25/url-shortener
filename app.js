@@ -24,6 +24,9 @@ const server = http.Server(app);
 // start db
 require("./config/database");
 
+// start db caches
+require("./services/cache.service");
+
 // secure apps by setting various HTTP headers
 app.use(
   helmet({
@@ -46,8 +49,8 @@ if (config.env === "development") {
   app.use(logger("dev"));
 }
 
-// mount all routes on /api path
-app.use("/api/v1", routes);
+// mount all routes on root [/] path
+app.all("*", routes);
 
 // if error is not an instanceOf APIError, convert it.
 app.use(error.converter);

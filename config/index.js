@@ -18,7 +18,10 @@ const envVarsSchema = Joi.object({
     .description("Database host name"),
   MONGO_PORT: Joi.string()
     .default("27017")
-    .description("Database port")
+    .description("Database port"),
+  REDIS_PORT: Joi.string()
+    .default("6379")
+    .description("Redis port")
 })
   .unknown()
   .required();
@@ -33,6 +36,7 @@ const config = {
   host: envVars.HOST,
   port: envVars.PORT,
   mongooseDebug: envVars.MONGOOSE_DEBUG,
+  redisUrl: `redis://${envVars.HOST}:${envVars.REDIS_PORT}`,
   database: {
     dbHost: envVars.MONGO_HOST,
     dbPort: envVars.MONGO_PORT,
