@@ -6,11 +6,8 @@ const config = require("./index");
 
 const debug = require("debug")("url-shortener:index");
 
-// make bluebird default Promise
-Promise = require("bluebird"); // eslint-disable-line no-global-assign
-
-// plugin bluebird promise in mongoose
-mongoose.Promise = Promise;
+// plugin global promise in mongoose
+mongoose.Promise = global.Promise;
 
 // connect to mongo db
 const { dbName, dbHost } = config.database;
