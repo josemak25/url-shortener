@@ -3,6 +3,7 @@ const httpStatus = require("http-status");
 const { UrlQuery } = require("../queries");
 const shortCode = require("../helpers/uniqueUriGenerator");
 const cache = require("../services/cache.service");
+const urlJsonFormatter = require("../helpers/urlJsonFormatter");
 
 const sendResponse = require("../helpers/response");
 
@@ -26,7 +27,11 @@ exports.create = async (req, res, next) => {
     const url = await UrlQuery.create({ originalUrl, shortUrl, urlCode });
 
     // Add the shortUrl to cache
-    cache.addToCache("originalUrl", JSON.stringify({ originalUrl }), url);
+    cache.addToCache(
+      "originalUrl",
+      JSON.stringify({ originalUrl }),
+      urlJsonFormatter.call(url)
+    );
 
     return res.json(sendResponse(httpStatus.OK, "success", url, null));
   } catch (err) {
