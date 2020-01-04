@@ -36,7 +36,7 @@ const config = {
   host: envVars.HOST,
   port: envVars.PORT,
   mongooseDebug: envVars.MONGOOSE_DEBUG,
-  redisUrl: `redis://${envVars.NODE_ENV}:${envVars.REDIS_PORT}}`,
+  redisUrl: `redis://${envVars.HOST}:${envVars.REDIS_PORT}`,
   database: {
     dbHost: envVars.MONGO_HOST,
     dbPort: envVars.MONGO_PORT,
