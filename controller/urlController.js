@@ -8,13 +8,34 @@ const sendResponse = require("../helpers/response");
 
 exports.create = async (req, res, next) => {
   try {
+    const { shortBaseUrl, originalUrl } = req.body;
+
+    const urlExist = await UrlQuery.findOne({ originalUrl });
+
+    if (urlExist) {
+      return res
+        .status(httpStatus.FOUND)
+        .json(sendResponse(httpStatus.FOUND, "success", urlExist, null));
+    }
+
+    const urlCode = shortCode();
+
+    const shortUrl = `${shortBaseUrl}/${urlCode}`;
+
+    // Add the shortUrl to db
+    const url = await UrlQuery.create({ originalUrl, shortUrl, urlCode });
+
+    // Add the shortUrl to cache
+    cache.addToCache("originalUrl", JSON.stringify({ originalUrl }), url);
+
+    return res.json(sendResponse(httpStatus.OK, "success", url, null));
   } catch (err) {
     next(err);
   }
 };
 
 exports.verify = async (req, res, next) => {
-  const { code: urlCode } = req.params;
+  const { urlCode } = req.params;
 
   try {
     const urlExits = await UrlQuery.findOne({ urlCode });
