@@ -11,10 +11,10 @@
 Building a custom URL shortening service like goo.gl or bitly using ExpressJs and Mongodb
 
 With ❤︎ and Inspiration from Muhsin.K, the original source where all ideas are built on
-Muhsin.K Blog: [Creating custom URL shortener with Nodejs](https://codeburst.io/creating-custom-url-shortener-with-nodejs-de10bbbb89c7)
-Muhsin.K Repo: [Creating custom URL shortener with Nodejs](https://github.com/muhzi4u/URL-Shortner)
 
-## Blog
+Muhsin.K Blog: [Creating custom URL shortener with Nodejs](https://codeburst.io/creating-custom-url-shortener-with-nodejs-de10bbbb89c7)
+
+Muhsin.K Repo: [Creating custom URL shortener with Nodejs](https://github.com/muhzi4u/URL-Shortner)
 
 ## Architecture
 
