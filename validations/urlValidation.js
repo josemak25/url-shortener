@@ -14,7 +14,7 @@ module.exports = {
   //GET /api/v1/shorten/verify
   verify: {
     params: {
-      code: Joi.string().required()
+      urlCode: Joi.string().required()
     }
   }
 };
