@@ -2,6 +2,7 @@ const httpStatus = require("http-status");
 
 const { UrlQuery } = require("../queries");
 const shortCode = require("../helpers/uniqueUriGenerator");
+const cache = require("../services/cache.service");
 
 const sendResponse = require("../helpers/response");
 
