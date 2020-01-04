@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "start:dev": "nodemon app.js",
+    "start": "node app.js & redis-server",
+    "start:dev": "nodemon app.js & redis-server",
     "test": "cross-env NODE_ENV=test && jest --runInBand --verbose --detectOpenHandles --forceExit",
     "test:watch": "yarn test -- --watch",
     "test:coverage": "yarn test --coverage",
