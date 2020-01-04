@@ -21,7 +21,7 @@ router
   );
 
 router
-  .route("/:code")
+  .route("/:urlCode")
   //Add body validation
   .get(validate(paramValidation.verify, { abortEarly: false }), urlCtrl.verify);
 
